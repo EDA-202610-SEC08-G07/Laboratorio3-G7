@@ -1,4 +1,4 @@
-from Data
+from DataStructures.List import list_node as ln
 
 def new_list():
     new_list = {
@@ -13,7 +13,7 @@ def get_element(my_list,pos):
     while searchpos < pos :
         node = node["next"]
         searchpos += 1
-    return node["node"]
+    return node["info"]
 def is_present(my_list,element,cmp_function):
     is_in_array = False
     temp = my_list["first"]
@@ -27,5 +27,6 @@ def is_present(my_list,element,cmp_function):
     if not is_in_array:
         count = -1
     return count 
+
 
     

@@ -1,4 +1,4 @@
-from DataStructures.List import single_linked_list as sll
+from Data
 
 def new_list():
     new_list = {
@@ -27,23 +27,5 @@ def is_present(my_list,element,cmp_function):
     if not is_in_array:
         count = -1
     return count 
-def add_first(my_list,element):
-    
-    my_list = sll.add_first(my_list,element)
-    print(my_list)
 
-def add_last(my_list,element):
-    
-    my_list = sll.add_last(my_list, element)
-    print(my_list)
-
-def size(my_list):
-    print(sll.size(my_list))
-    
-
-def first_element(my_list):
-    
-    
-    print(sll.first_element(my_list))
-       
     

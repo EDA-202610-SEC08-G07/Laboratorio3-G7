@@ -27,6 +27,45 @@ def is_present(my_list,element,cmp_function):
     if not is_in_array:
         count = -1
     return count 
+def add_first(my_list,element):
+    my_list["size"] += 1
+    new = ln.new_single_node(element)
+    if my_list["first"] == None:
+        my_list["first"] = new
+        my_list["last"] = new
+    else:
+     new["next"] = my_list["first"]
+     my_list["first"] = new
 
-
+def add_last(my_list,element):
     
+    new = ln.new_single_node(element)
+    
+    if my_list["size"] == 0:
+        my_list["first"] = new
+        my_list["last"] = new
+    else:
+        my_list["last"]["next"] = new
+    my_list["size"] += 1
+    return my_list
+        
+def is_empty(my_list):
+    if my_list["size"] == 0:
+        return True
+    else:
+        return False
+    
+def size(my_list):
+    return my_list["size"]
+
+def first_element(my_list):
+    return["first"]
+    
+def last_element(my_list):
+    return["last"]
+        
+        
+        
+        
+    
+        

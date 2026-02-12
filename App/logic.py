@@ -99,12 +99,17 @@ def load_tags(catalog):
 
     :return: El número de tags cargados
     """
-    # TODO Implementar la carga de los tags
-    booksfile = data_dir + 'GoodReads/books-medium.csv'
-    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
+    tags_file = os.path.join(data_dir, filename)
+    input_file = csv.DictReader(open(tags_file, encoding="utf-8"))
+    catalog["tags"] = set.new_set()
+
     for tag in input_file:
-        add_book(catalog, tag)
-    return book_size(catalog), author_size(catalog)
+        set.add_element(catalog["tags"], tag)
+
+    return tag_size(catalog)
+    
+    # TODO Implementar la carga de los tags
+    pass
 
 
 def load_books_tags(catalog):
@@ -115,13 +120,16 @@ def load_books_tags(catalog):
 
     :return: El número de book_tags cargados
     """
+    book_tags = catalog.get("Book_tags")
+    book_tags_file = os.path.join(data_dir, filename)
+    catalog["Book_tags"] = set.load_set(book_tags, book_tags_file)
+    if book_tags is None:
+        return None
+    else:
+        return set.size(catalog.get("Book_tags"))
+    
     # TODO Implementar la carga de los book_tags
-    booksfile = data_dir + 'GoodReads/books-medium.csv'
-    input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
-    for book_tag in input_file:
-        add_book(catalog, book_tag)
-    return book_size(catalog), author_size(catalog)
-
+    pass
 
 
 # Funciones de consulta sobre el catálogo
@@ -147,7 +155,14 @@ def get_best_book(catalog):
     :return: El libro con el mejor rating
     """
     start_time = getTime()
-    best_book = None
+    best_book = catalog['rating'][0]
+    for i in catalog['rating']:
+        
+        if catalog['rating'][i] > best_book:
+            best_book = catalog['rating'][i]
+        
+            
+    
     # TODO Implementar la función del mejor libro por rating
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)
@@ -164,7 +179,12 @@ def count_books_by_tag(catalog, tag):
     :return: El número de libros que fueron etiquetados con el tag dado
     """
     start_time = getTime()
+    
     resultado = 0
+    for i in catalog['tags']:
+        if i == tag:
+            resultado += 1 
+        
     # TODO Implementar la función de conteo de libros por tag
     end_time = getTime()
     tiempo_transcurrido = deltaTime(end_time, start_time)

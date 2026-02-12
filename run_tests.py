@@ -2,8 +2,8 @@ import os
 
 
 def execute_pytest_test(test_name):
-    os.system(f"pytest -v -k \"{test_name}\"")
-
+    os.system(f"python -m pytest -v -k \"{test_name}\"")
+2
 
 def print_test_options():
     print(" Bienvenido a las pruebas de EDA ".center(80, "="))
